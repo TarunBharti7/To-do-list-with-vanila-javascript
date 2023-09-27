@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>To Do List 🗒️</h1>
+        </div>
+        <div class="list-enter">
+            <input type="text" id="inp" placeholder="Enter list item..........">
+            <button id="btn" >Submit</button>
+        </div>
+
+        <div class="data-container">
+            <ul id="data">
+
+            </ul>
+        </div>
+    </div>
+    <!-- footer  -->
+    <footer>
+        <p>Single Click to Select Items</p>
+        <p>Double Click to remove Items</p>
+    </footer>
+
+    <script>
+        let inp = document.getElementById("inp");
+        let btn = document.getElementById("btn")
+        let count = 0;
+
+        const submit = () => {
+            let elm = document.getElementById("data");
+            let li = document.createElement("li");
+            // add id in li tag
+            li.setAttribute("id" , `list-${count+1}`)
+
+            // creating cross tag
+            let del = document.getElementById(`list-${count+1}`);
+
+            // add value in li tag
+            let text = document.createTextNode(inp.value);
+            li.appendChild(text);
+            elm.appendChild(li);
+
+            li.addEventListener("click" , function() {
+                li.style.textDecoration = "line-through";
+            })
+
+            li.addEventListener("dblclick" , function() {
+                elm.removeChild(li);
+                // li.style.textDecoration = "line-through";
+            })
+
+            // li.addEventListener("dblclick" , function() {
+            //     // elm.removeChild(li);
+            //     console.log("hello world");
+            // })
+
+            console.log(inp.value);
+            inp.value = " ";
+            count++;
+
+           
+        }
+
+        
+
+        btn.addEventListener("click" , submit);
+
+        
+    </script>
+</body>
+</html>
